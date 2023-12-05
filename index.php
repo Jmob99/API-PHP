@@ -48,7 +48,7 @@ if ($_POST['METHOD'] == 'PUT') {
     $direccion = $_POST['direccion'];
     
 
-    $query = "update cliente set id_tipo_documento='$id_tipo_documento', numero_documento='$numero_documento', nombre='$nombre', apellido='$apellido', telefono='$telefono',correo_electronico='$correo_electronico',direccion='$direccion' where id_cliente='$id_cliente'";
+    $query = "update cliente set id_tipo_documento='$id_tipo_documento', numero_documento='$numero_documento', telefono='$telefono', direccion='$direccion', correo_electronico='$correo_electronico', nombre='$nombre', apellido='$apellido' where id_cliente='$id_cliente'";
     $result = metodoPut($query);
     echo json_encode($result);
     header('HTTP/1.1 200 0K');
