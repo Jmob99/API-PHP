@@ -1,8 +1,8 @@
 <?php
-
 include_once './bd/bd.php';
 
 header('Access-Control-Allow-Origin: *');
+
 
 if ($_SERVER['REQUEST_METHOD'] == 'GET') {
     if (isset($_GET['id_cliente'])) {
@@ -20,7 +20,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 
 if ($_POST['METHOD'] == 'POST') {
     unset($_POST['METHOD']);
-    $id_cliente = $_POST['id_cliente'];
     $id_tipo_documento = $_POST['id_tipo_documento'];
     $numero_documento = $_POST['numero_documento'];
     $nombre = $_POST['nombre'];
@@ -29,7 +28,7 @@ if ($_POST['METHOD'] == 'POST') {
     $correo_electronico = $_POST['correo_electronico'];
     $direccion = $_POST['direccion'];
 
-    $query = "insert into cliente(id_tipo_documento, numero_documento,nombre, apellido, telefono, correo_electronico,  direccion) values ('$id_tipo_documento', '$numero_documento','$nombre', '$apellido', '$telefono', '$correo_electronico','$direccion')";
+    $query = "insert into cliente(id_tipo_documento, numero_documento, telefono, direccion, correo_electronico, nombre, apellido) values ('$id_tipo_documento', '$numero_documento', '$telefono','$direccion', '$correo_electronico', '$nombre', '$apellido')";
     $queryAutoIncrement = "select MAX(id_cliente) as id_cliente from cliente";
     $result = metodoPost($query, $queryAutoIncrement);
     echo json_encode($result);
@@ -47,7 +46,7 @@ if ($_POST['METHOD'] == 'PUT') {
     $telefono = $_POST['telefono'];
     $correo_electronico = $_POST['correo_electronico'];
     $direccion = $_POST['direccion'];
-
+    
 
     $query = "update cliente set id_tipo_documento='$id_tipo_documento', numero_documento='$numero_documento', nombre='$nombre', apellido='$apellido', telefono='$telefono',correo_electronico='$correo_electronico',direccion='$direccion' where id_cliente='$id_cliente'";
     $result = metodoPut($query);
