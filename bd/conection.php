@@ -1,6 +1,6 @@
 <?php
 
-include_once 'uri.php';
+$uri = $_ENV['DATABASE_URL'];
 
 $fields = parse_url($uri);
 
@@ -9,7 +9,7 @@ $conn = "mysql:";
 $conn .= "host=" . $fields["host"];
 $conn .= ";port=" . $fields["port"];;
 $conn .= ";dbname=defaultdb";
-$conn .= ";sslmode=verify-ca;sslrootcert='C:\wamp64\www\API-PHP-main/ca.pem'";
+$conn .= ";sslrootcert=" . $_ENV["DB_CA_CERT_URL"];
 
 function conection()
 {
